@@ -2,15 +2,21 @@ package com.maurotrillos.LiterAlura.model;
 
 public class Libro {
     private String titulo;
-    private String autor;
+    private String nombreAutor;
     private String idioma;
-    private int cantidadDescargas;
+    private Integer cantidadDeDescargas;
+    private Autor autor;
 
-    public Libro(String titulo, String autor, String idioma, int cantidadDescargas) {
-        this.titulo = titulo;
-        this.autor = autor;
-        this.idioma = idioma;
-        this.cantidadDescargas = cantidadDescargas;
+    public Libro() {
+
+    }
+
+    public Libro(DatosLibros datos){
+        this.titulo = datos.titulo();
+        Autor autor = new Autor(datos.autor().get(0));
+        this.nombreAutor = autor.getNombreAutor();
+        this.idioma =datos.idioma().get(0);
+        this.cantidadDeDescargas = datos.numeroDeDescargas();
     }
 
     public String getTitulo() {
@@ -21,12 +27,12 @@ public class Libro {
         this.titulo = titulo;
     }
 
-    public String getAutor() {
-        return autor;
+    public String getNombreAutor() {
+        return nombreAutor;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setNombreAutor(String nombreAutor) {
+        this.nombreAutor = nombreAutor;
     }
 
     public String getIdioma() {
@@ -37,21 +43,21 @@ public class Libro {
         this.idioma = idioma;
     }
 
-    public int getCantidadDescargas() {
-        return cantidadDescargas;
+    public Integer getCantidadDeDescargas() {
+        return cantidadDeDescargas;
     }
 
-    public void setCantidadDescargas(int cantidadDescargas) {
-        this.cantidadDescargas = cantidadDescargas;
+    public void setCantidadDeDescargas(Integer cantidadDeDescargas) {
+        this.cantidadDeDescargas = cantidadDeDescargas;
     }
 
     @Override
     public String toString() {
-        return  "---------- Libro ----------" +
+        return "---------- Libro ----------" +
                 "\nTitulo: " + titulo  +
-                "\nAutor = " + autor  +
+                "\nAutor = " + nombreAutor  +
                 "\nIdioma = " + idioma +
-                "\nNumero de descargas = " + cantidadDescargas +
+                "\nNumero de descargas = " + cantidadDeDescargas +
                 "\n-------------------------" ;
     }
 }

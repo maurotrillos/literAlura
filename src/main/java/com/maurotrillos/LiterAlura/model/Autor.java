@@ -1,54 +1,49 @@
 package com.maurotrillos.LiterAlura.model;
 
-import java.time.LocalDate;
+import java.util.List;
 
 public class Autor {
-    private String nombre;
-    private LocalDate fechaNacimiento;
-    private LocalDate fechaMuerte;  // Puede ser null si está vivo
+    private  String nombreAutor;
+    private Integer fechaDeNacimiento;
+    private Integer fechaDemuerte;
+    private List<Libro> librosDelAutor;
 
-    // Constructor
-    public Autor(String nombre, LocalDate fechaNacimiento, LocalDate fechaMuerte) {
-        this.nombre = nombre;
-        this.fechaNacimiento = fechaNacimiento;
-        this.fechaMuerte = fechaMuerte;
+    public Autor(DatosAutor datosAutor) {
+        this.nombreAutor = datosAutor.nombreDelAutor();
+        this.fechaDeNacimiento = Integer.valueOf(datosAutor.fechaDeNacimiento());
+        this.fechaDemuerte = Integer.valueOf(datosAutor.fechaDeMuerte());
+
     }
 
-    // Getters y Setters
-    public String getNombre() {
-        return nombre;
+    public String getNombreAutor() {
+        return nombreAutor;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreAutor(String nombreAutor) {
+        this.nombreAutor = nombreAutor;
     }
 
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
+    public Integer getFechaDeNacimiento() {
+        return fechaDeNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setFechaDeNacimiento(Integer fechaDeNacimiento) {
+        this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
-    public LocalDate getFechaMuerte() {
-        return fechaMuerte;
+    public Integer getFechaDemuerte() {
+        return fechaDemuerte;
     }
 
-    public void setFechaMuerte(LocalDate fechaMuerte) {
-        this.fechaMuerte = fechaMuerte;
+    public void setFechaDemuerte(Integer fechaDemuerte) {
+        this.fechaDemuerte = fechaDemuerte;
     }
 
-
-    public boolean estaVivoEnAño(int año) {
-        LocalDate fechaLimite = LocalDate.of(año, 12, 31);
-        return (fechaMuerte == null || fechaMuerte.isAfter(fechaLimite));
+    public List<Libro> getLibrosDelAutor() {
+        return librosDelAutor;
     }
 
-
-    @Override
-    public String toString() {
-        return "Nombre: " + nombre + ", Nacido: " + fechaNacimiento + ", Fallecido: " + (fechaMuerte != null ? fechaMuerte : "Aún vivo");
+    public void setLibrosDelAutor(List<Libro> librosDelAutor) {
+        this.librosDelAutor = librosDelAutor;
     }
 }
-
